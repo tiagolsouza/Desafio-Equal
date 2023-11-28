@@ -10,10 +10,10 @@ import seaborn as sns
 #st.title("disgraça de site")
 
 # Carregar os dados
-fato_vendas = pd.read_excel(r'python\DesafioEqual\fato_vendas.xlsx')
-dim_produtos = pd.read_excel(r'python\DesafioEqual\dim_produtos.xlsx')
-dim_familia_produtos = pd.read_excel(r'python\DesafioEqual\dim_familia_produtos.xlsx')
-dim_vendedor = pd.read_excel(r'python\DesafioEqual\dim_vendedor.xlsx')
+fato_vendas = pd.read_excel('fato_vendas.xlsx')
+dim_produtos = pd.read_excel('dim_produtos.xlsx')
+dim_familia_produtos = pd.read_excel('dim_familia_produtos.xlsx')
+dim_vendedor = pd.read_excel('dim_vendedor.xlsx')
 
 # Visualização do total vendido no ano e vendas ao longo do tempo
 total_vendido = fato_vendas.groupby('data_venda')['valor_monetario_total'].sum().reset_index()
