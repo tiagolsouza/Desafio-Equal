@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-#import plotly.express as px
-import matplotlib.pyplot as plt
+import plotly.express as px
+#import matplotlib.pyplot as plt
 import seaborn as sns
 
 #st.set_page_config(layout="wide")
@@ -29,14 +29,14 @@ total_vendido_filtrado = total_vendido[total_vendido["Month"] == month]
 
 col1, col2 = st.columns(2)
 
-col1= total_vendido_filtrado.plot(label='Total Vendido', marker='o')
-plt.title('Total Vendido ao Longo do Ano')
-plt.xlabel('Data da Venda')
-plt.ylabel('Valor Monetário Total')
+#col1= total_vendido_filtrado.plot(label='Total Vendido', marker='o')
+#plt.title('Total Vendido ao Longo do Ano')
+#plt.xlabel('Data da Venda')
+#plt.ylabel('Valor Monetário Total')
 
-#fig_prod = px.line(total_vendido_filtrado, x='data_venda', y='valor_monetario_total',
-#                   title='grafico 1')
-#col1.plotly_chart(fig_prod)
+fig_prod = px.line(total_vendido_filtrado, x='data_venda', y='valor_monetario_total',
+                   title='grafico 1')
+col1.plotly_chart(fig_prod)
 
 #total_vendido
 
