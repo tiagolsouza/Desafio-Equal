@@ -4,7 +4,7 @@ import plotly.express as px
 from millify import millify
 
 st.set_page_config(layout="wide")
-st.title('DASHBOARD')
+st.title('DASHBOARD - Desafio Equal')
 
 @st.cache_data
 def carrega_data(nome):
