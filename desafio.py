@@ -50,7 +50,7 @@ top_familias = fato_vendas.merge(dim_produtos, on='codigo_produto').merge(
     dim_familia_produtos, on='codigo_familia').groupby('descricaofamilia')['valor_monetario_total'].sum().nlargest(5).reset_index()
 
 grafico2 = px.bar(top_familias, x="valor_monetario_total", y="descricaofamilia", 
-                  title="Top 5 Famílias de Produtos para Campanhas em Dezembro",
+                  title="Top 5 Famílias de Produtos",
                   labels= {'valor_monetario_total': 'Total Arrecadado', 'descricaofamilia': 'Familia de produtos'} )
 grafico2.update_layout(yaxis=dict(categoryorder = 'total ascending'))
 col4.plotly_chart(grafico2, use_container_width=True)
