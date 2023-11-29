@@ -20,10 +20,10 @@ dim_vendedor = carrega_data('dim_vendedor.xlsx')
 # Visualização do total vendido no ano e vendas ao longo do tempo
 total_vendido = fato_vendas.groupby('data_venda')['valor_monetario_total'].sum().reset_index()
 
+#=======Filtro mensal======
 total_vendido["Month"] = total_vendido["data_venda"].apply(lambda x: str(x.year) + "-" + str(x.month))
 month = st.sidebar.selectbox("Mês", total_vendido["Month"].unique())
 
-#=======Filtro mensal======
 total_vendido_filtrado = total_vendido[total_vendido["Month"] == month]
 
 #======Criando cards=======
@@ -52,6 +52,7 @@ top_familias = fato_vendas.merge(dim_produtos, on='codigo_produto').merge(
 grafico2 = px.bar(top_familias, x="valor_monetario_total", y="descricaofamilia", 
                   title="Top 5 Famílias de Produtos para Campanhas em Dezembro",
                   labels= {'valor_monetario_total': 'Total Arrecadado', 'descricaofamilia': 'Familia de produtos'} )
+grafico2.update_layout(yaxis=dict(categoryorder = 'total ascending'))
 col4.plotly_chart(grafico2, use_container_width=True)
 
 # Proposição de três indicadores de performance de vendas por vendedor
@@ -71,14 +72,20 @@ col5, col6, col7 = st.columns(3)
 grafico3 = px.bar(top_vendedores_venda, x="total_vendas", y="nome_vendedor", 
                   title="Top 5 Vendedores  Totais",
                   labels= {'total_vendas': 'Vendas Totais', 'nome_vendedor': 'Vendedor'} )
+grafico3.update_xaxes(range=[500000,999000])
+grafico3.update_layout(yaxis=dict(categoryorder = 'total ascending'))
 col5.plotly_chart(grafico3, use_container_width=True)
 
 grafico4 = px.bar(top_vendedores_qtdade, x="quantidade", y="nome_vendedor", 
                   title="Top 5 Vendedores por Quantidade",
                   labels= {'quantidade': 'Quantidade Vendida', 'nome_vendedor': 'Vendedor'} )
+grafico4.update_xaxes(range=[4000, 6000])
+grafico4.update_layout(yaxis=dict(categoryorder = 'total ascending'))
 col6.plotly_chart(grafico4, use_container_width=True)
 
 grafico5 = px.bar(top_vendedores_media, x="media_valor", y="nome_vendedor", 
                   title="Top 5 Vendedores por Média Vendida",
                   labels= {'media_valor': 'Média de vendas', 'nome_vendedor': 'Vendedor'} )
+grafico5.update_xaxes(range=[100, 200])
+grafico5.update_layout(yaxis=dict(categoryorder = 'total ascending'))
 col7.plotly_chart(grafico5, use_container_width=True)
